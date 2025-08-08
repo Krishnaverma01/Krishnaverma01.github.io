@@ -9,368 +9,727 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ======================= GLOBAL STYLES ======================= */
     html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #f8f8f8;
-      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-      color: #222;
-      overflow: hidden;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    h1, h2, h3, p {
-      margin: 0;
-    }
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  overflow: hidden;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cover-container {
+  background: #f8f8f8;
+  width: 450px;
+  height: 600px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 40px;
+  transition: box-shadow 0.4s cubic-bezier(.77,0,.18,1), border-radius 0.5s cubic-bezier(.77,0,.18,1);
+}
+.cover-content {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  min-width: 0;
+}
+.cover-title {
+  font-size: 4.2rem;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #222;
+  margin: 0;
+  text-transform: uppercase;
+  word-break: break-all;
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.cover-footer {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #222;
+  border-top: 2px solid #222;
+  border-bottom: 2px solid #222;
+  padding: 10px 28px;
+  background: #f8f8f8;
+  letter-spacing: 0.08em;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.main-content {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0; left: 0;
+  background: #ededed;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s;
+}
+.main-content.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.7s;
+}
+#welcome {
+  font-family:'Poppins',sans-serif;
+  font-size:2.2rem;
+  color:#222;
+  text-align:center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
+  width: 100vw;
+  position: absolute;
+  top: 40vh;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+#welcome.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#bookFlip {
+  transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
+}
+.book-flip {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 2000px;
+  margin: 0;
+  background: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.book-page {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  opacity: 1;
+  z-index: 1;
+  font-size: 2.2rem;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #fff 80%, #f5f5f5 100%);
+  color: #222;
+  overflow: hidden;
+  transition: 
+    transform 0.35s cubic-bezier(.77,0,.18,1),
+    box-shadow 0.3s,
+    opacity 0.3s;
+  will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.book-page .title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.book-page .content {
+  font-size: 1.4rem;
+  color: #444;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.book-page.left {
+  z-index: 2;
+  pointer-events: none;
+  transform: rotateY(-180deg);
+  opacity: 0.2;
+}
+.book-page.active {
+  z-index: 10;
+  pointer-events: auto;
+  transform: rotateY(0deg);
+  opacity: 1;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.book-page.right {
+  z-index: 1;
+  pointer-events: none;
+  transform: rotateY(0deg);
+  opacity: 0.2;
+}
+.book-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 20;
+  transform: translateY(-50%);
+  padding: 0 3vw;
+  box-sizing: border-box;
+}
+.book-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  font-size: 2rem;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0.85;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s, opacity 0.2s, transform 0.2s;
+  pointer-events: auto;
+  user-select: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.book-btn:active {
+  opacity: 1;
+  background: #444;
+  transform: scale(0.96);
+}
+.book-btn[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.cover-container.anim-rect {
+  transition: width 0.6s cubic-bezier(.77,0,.18,1), height 0.6s cubic-bezier(.77,0,.18,1), left 0.6s, top 0.6s, transform 0.6s;
+  width: 700px !important;
+  height: 320px !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.cover-container.anim-rounded {
+  transition: border-radius 0.5s cubic-bezier(.77,0,.18,1);
+  border-radius: 48px !important;
+}
+.cover-container.anim-expand {
+  transition: width 0.7s cubic-bezier(.77,0,.18,1), height 0.7s cubic-bezier(.77,0,.18,1), border-radius 0.7s cubic-bezier(.77,0,.18,1), left 0.7s, top 0.7s, transform 0.7s;
+  width: 100vw !important;
+  height: 100vh !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0 !important;
+  position: fixed !important;
+  z-index: 10000 !important;
+  box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+  background: #f8f8f8 !important;
+}
+.cover-container.anim-overflow {
+  overflow: hidden !important;
+}
+.cover-container.anim-fadeout {
+  transition: opacity 0.6s cubic-bezier(.77,0,.18,1);
+  opacity: 0;
+}
+@media (max-width: 900px) {
+  .book-page { font-size: 1.1rem; }
+  .book-btn { width: 44px; height: 44px; font-size: 1.5rem; }
+}
+@media (max-width: 600px) {
+  .book-page { font-size: 1rem; }
+  .book-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+}
+.nav-link {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.nav-link:hover {
+  color: #555;
+}
+/* Contact Section */
+.contact-section {
+  padding: 100x 200px;
+  background: #f8f8f8;
+}
 
-    /* ======================= COVER ANIMATION ======================= */
-    #cover {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #333;
-      color: white;
-      padding: 2rem 4rem;
-      border-radius: 12px;
-      cursor: pointer;
-      z-index: 999;
-      transition: all 0.6s ease;
-      text-align: center;
-    }
-    #cover.anim-rect {
-      width: 60%;
-      height: 200px;
-    }
-    #cover.anim-rounded {
-      border-radius: 30px;
-    }
-    #cover.anim-expand {
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      transform: none;
-    }
-    #cover.anim-fadeout {
-      opacity: 0;
-    }
+.contact-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: auto;
+}
 
-    /* ======================= MAIN CONTENT ======================= */
-    #mainContent {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    #mainContent.visible {
-      display: block;
-      opacity: 1;
-    }
+.contact-card {
+  flex: 1 1 14%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
 
-    /* ======================= WELCOME SECTION ======================= */
-    #welcome {
-      font-size: 2rem;
-      text-align: center;
-      margin-top: 3rem;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    #welcome.visible {
-      opacity: 1;
-    }
+.contact-card h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
 
-    /* ======================= BOOK FLIP ======================= */
-    #bookFlip {
-      display: none;
-      opacity: 0;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .page {
-      width: 200px;
-      height: 300px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-      padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .page.left {
-      transform: translateX(-120%) rotateY(-20deg);
-      opacity: 0.5;
-    }
-    .page.active {
-      transform: translateX(0) rotateY(0);
-      opacity: 1;
-    }
-    .page.right {
-      transform: translateX(120%) rotateY(20deg);
-      opacity: 0.5;
-    }
+.contact-card p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
 
-    button {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 6px;
-      background: #333;
-      color: white;
-      cursor: pointer;
-    }
-    button:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
+.contact-card a {
+  color: #0073e6;
+  text-decoration: none;
+}
 
-    /* ======================= ABOUT PAGE ANIMATION ======================= */
-    .about-center-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-      padding: 1rem;
-    }
-    .about-animate-hide {
-      opacity: 0;
-      transform: scale(0.95) translateY(20px);
-    }
-    .about-nav, .about-footer {
-      text-align: center;
-      padding: 1rem;
-    }
+.contact-card a:hover {
+  text-decoration: underline;
+}
+
+/* Form Styles */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0073e6;
+}
+
+.contact-form button {
+  padding: 12px;
+  background: #0073e6;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #005bb5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-card {
+    flex: 1 1 100%;
+  }
+}
+
   </style>
 </head>
 <body>
-
-  <!-- COVER -->
-  <div id="cover">
-    <h1>Welcome to My Portfolio</h1>
-    <p>Click to start</p>
+<body>
+  <div class="cover-container" id="cover">
+    <div class="cover-content">
+      <div class="cover-title">
+        <span>PORT-</span>
+        <span>FOLIO</span>
+      </div>
+    </div>
+    <div class="cover-footer">
+      <span>Krishna Verma</span>
+      <span>Selected Works</span>
+      <span>2025</span>
+      <span>Frontend</span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
+  <div class="main-content" id="mainContent">
+    <div id="welcome">Welcome to my portfolio!</div>
+    <div class="book-flip" id="bookFlip">
+      <div class="book-page left" id="page0"></div>
+      <div class="book-page active" id="page1">
+        <div class="dark-about">
+          <nav class="about-nav">
+            <div class="about-nav-left">
+              <span>WORK (12) </span>
+<span id="aboutLink" class="nav-link">ABOUT</span>
+<span id="projectsLink" class="nav-link">PROJECTS</span>
+  
+            </div>
+         <div class="about-nav-desc">
+          <p>
+          Motivated and ambitious student, passionate about technology, machine learning, and web development.
+          </p>
+          <button class="about-newsletter">NEWSLETTER</button>
+          </div>
 
-  <!-- MAIN CONTENT -->
-  <div id="mainContent">
-    <div id="welcome" class="visible">
-      <h2>Hello, I'm Krishna</h2>
+          </nav>
+          <main class="about-center">
+            <div class="about-center-grid">
+              <span class="about-role">VISUAL<br>PRODUCT<br>[WEBFLOW]</span>
+              <div class="about-photo">
+                <img src="profile.jpg" alt="profile">
+              </div>
+              <span class="about-role">     DATA <BR>ANALYST</span>
+              <span class="about-role designer"> SOFTWARE DEVELOPER</span>
+              <span class="about-role code">[OPEN FOR WORK]</span>
+            </div>
+          </main>
+          <footer class="about-footer">
+            <div class="about-footer-left">
+              SOCIAL:
+              <a href="https://www.instagram.com/v_krishna007?igsh=MTU0Y2xraW9rbXRpdg==" target="_blank" rel="noopener" class="about-social-link">Instagram</a>,
+              <a href="https://www.linkedin.com/in/krishna-verma-69b57228a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" class="about-social-link">LinkedIn</a>
+            </div>
+            <div class="about-footer-center">BE CREATIVE</div>
+            <div class="about-footer-center">BE DIFFERENT</div>
+            <div class="about-footer-right">©2025 </div>
+          </footer>
+        </div>
+      </div>
+      <div class="book-page right" id="page2">
+        <div class="title">Skills</div>
+        <div class="content">
+          HTML5, CSS3, JavaScript,GitHub, Python, PowerBI, Microsoft Excel, Sql, DBMS, DSA, Canva, Adobe XD ,SDLC
+        </div>
+      </div>
+      <div class="book-page right" id="page3">
+        <div class="title">Projects</div>
+        <div class="content">
+          Portfolio Website, spam mail detection using machine learning 
+        </div>
+      </div>
+      <div class="book-page right" id="page4">
+        <section id="contact" class="contact-section">
+  <div class="contact-container">
+    
+    <!-- Left Box: Contact Details -->
+    <div class="contact-card contact-details">
+      <h2>Contact Details</h2>
+      <p>📍 <strong>Location:</strong> Mathura, Uttar Pradesh, India</p>
+      <p>📧 <strong>Email:</strong> <a href="mailto:krishnaverma.ac.in@gmail.com">krishnaverma.ac.in@gmail.com</a></p>
+      <p>📞 <strong>Phone:</strong> <a href="tel:+917017655342">+91 70176 55342</a></p>
+      <p>💼 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/samarth-verma" target="_blank">linkedin.com/in/samarth-verma</a></p>
+      <p>🐙 <strong>GitHub:</strong> <a href="https://github.com/samarthverma" target="_blank">github.com/samarthverma</a></p>
     </div>
 
-    <!-- Book Flip -->
-    <div id="bookFlip">
-      <button id="prevBtn">Previous</button>
-      <div class="page" id="page1">About</div>
-      <div class="page" id="page2">Skills</div>
-      <div class="page" id="page3">Projects</div>
-      <div class="page" id="page4">Contact</div>
-      <button id="nextBtn">Next</button>
+    <!-- Right Box: Contact Me Form -->
+    <div class="contact-card contact-form">
+      <h2>Contact Me</h2>
+      <p>Send me a message — I usually reply within 24–48 hours.</p>
+     <form id="contactForm">
+  <input type="text" name="user_name" placeholder="Your Name" required>
+  <input type="email" name="user_email" placeholder="Your Email" required>
+  <input type="tel" name="phone" placeholder="Your Phone Number">
+  <input type="text" name="subject" placeholder="Subject">
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+
     </div>
 
-    <!-- About Page Example -->
-    <nav class="about-nav">
-      <button id="aboutLink">About</button>
-      <button id="projectsLink">Projects</button>
-    </nav>
-    <div class="about-center-grid">
-      <div>Card 1</div>
-      <div>Card 2</div>
-      <div>Card 3</div>
-    </div>
-    <footer class="about-footer">
-      <p>© 2025 My Portfolio</p>
-    </footer>
-
-    <!-- Contact Form -->
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
   </div>
+</section>
 
-  <!-- EmailJS -->
+
+  
+          
+</div>
+
+      
+      <div class="book-controls">
+        <button class="book-btn" id="prevBtn" aria-label="Previous page">&#8592;</button>
+        <button class="book-btn" id="nextBtn" aria-label="Next page">&#8594;</button>
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  <!-- MAIN SCRIPT -->
-  <script>
-    // Cover click transition
-    const cover = document.getElementById('cover');
-    const mainContent = document.getElementById('mainContent');
+ <script> 
+// Cover click transition with previous animation
+const cover = document.getElementById('cover');
+const mainContent = document.getElementById('mainContent');
 
-    if (cover) {
-      cover.addEventListener('click', function handleCoverClick(e) {
-        if (cover.classList.contains('anim-rect') || cover.classList.contains('anim-expand')) return;
-        cover.classList.add('anim-overflow');
-        cover.classList.add('anim-rect');
-        setTimeout(() => {
-          cover.classList.add('anim-rounded');
-          setTimeout(() => {
-            cover.classList.add('anim-expand');
-            setTimeout(() => {
-              cover.classList.add('anim-fadeout');
-              const welcome = document.getElementById('welcome');
-              if (welcome) welcome.classList.add('visible');
-              setTimeout(() => {
-                cover.style.display = 'none';
-                mainContent.classList.add('visible');
-                setTimeout(showBookFlip, 800);
-              }, 600);
-            }, 800);
-          }, 500);
-        }, 600);
-      });
-    }
-
-    let aboutPageAnimated = false;
-
-    function showBookFlip() {
-      const welcome = document.getElementById('welcome');
-      const book = document.getElementById('bookFlip');
-      welcome.style.transition = "opacity 0.7s";
-      welcome.style.opacity = 0;
+// Animated morph for cover card (expands from center, title always centered)
+if (cover) {
+  cover.addEventListener('click', function handleCoverClick(e) {
+    if (cover.classList.contains('anim-rect') || cover.classList.contains('anim-expand')) return;
+    cover.classList.add('anim-overflow');
+    // Step 1: Morph to horizontal rectangle
+    cover.classList.add('anim-rect');
+    // Step 2: After width/height transition, round corners
+    setTimeout(() => {
+      cover.classList.add('anim-rounded');
+      // Step 3: After border-radius, expand to fullscreen from center
       setTimeout(() => {
-        book.style.display = "flex";
-        book.style.opacity = "0";
-        book.style.transition = "opacity 0.8s cubic-bezier(.77,0,.18,1)";
+        cover.classList.add('anim-expand');
+        // Step 4: After expand, fade out cover and fade in welcome
         setTimeout(() => {
-          book.style.opacity = "1";
+          cover.classList.add('anim-fadeout');
+          const welcome = document.getElementById('welcome');
+          if (welcome) welcome.classList.add('visible');
+          // After fade, hide cover and show main content
           setTimeout(() => {
-            if (pages[0].classList.contains('active') && !aboutPageAnimated) {
-              animateAboutPage();
-              aboutPageAnimated = true;
-            }
-            setTimeout(() => {
-              welcome.style.display = "none";
-            }, 200);
-          }, 800);
-        }, 100);
-      }, 400);
-    }
+            cover.style.display = 'none';
+            mainContent.classList.add('visible');
+            setTimeout(showBookFlip, 800);
+          }, 600);
+        }, 800);
+      }, 500);
+    }, 600);
+  });
+}
 
-    const pages = [
-      document.getElementById('page1'),
-      document.getElementById('page2'),
-      document.getElementById('page3'),
-      document.getElementById('page4')
-    ];
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let current = 0;
+let aboutPageAnimated = false;
 
-    function updatePages() {
-      pages.forEach((page, i) => {
-        page.classList.remove('left', 'active', 'right');
-        if (i < current) page.classList.add('left');
-        else if (i === current) page.classList.add('active');
-        else page.classList.add('right');
-      });
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === pages.length - 1;
-    }
-    prevBtn.addEventListener('click', () => { if (current > 0) { current--; updatePages(); } });
-    nextBtn.addEventListener('click', () => { if (current < pages.length - 1) { current++; updatePages(); } });
-    document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') prevBtn.click(); if (e.key === 'ArrowRight') nextBtn.click(); });
-
-    let startX = null;
-    document.getElementById('bookFlip').addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-    document.getElementById('bookFlip').addEventListener('touchend', e => {
-      if (startX !== null) {
-        let dx = e.changedTouches[0].clientX - startX;
-        if (dx > 40) prevBtn.click();
-        if (dx < -40) nextBtn.click();
-        startX = null;
-      }
-    });
-
+function showBookFlip() {
+  const welcome = document.getElementById('welcome');
+  const book = document.getElementById('bookFlip');
+  // Fade out welcome
+  welcome.style.transition = "opacity 0.7s";
+  welcome.style.opacity = 0;
+  // Fade in book with slight overlap
+  setTimeout(() => {
+    book.style.display = "flex";
+    book.style.opacity = "0";
+    book.style.transition = "opacity 0.8s cubic-bezier(.77,0,.18,1)";
+    setTimeout(() => {
+      book.style.opacity = "1";
+      // Animate about page only after book is fully visible, and only once
+      setTimeout(() => {
+        if (pages[0].classList.contains('active') && !aboutPageAnimated) {
+          animateAboutPage();
+          aboutPageAnimated = true;
+        }
+        // Hide welcome after book is visible
+        setTimeout(() => {
+          welcome.style.display = "none";
+        }, 200);
+      }, 800); // match book fade duration
+    }, 100); // slight overlap for smoothness
+  }, 400); // start book fade in before welcome is fully gone
+}
+const pages = [
+  document.getElementById('page1'),
+  document.getElementById('page2'),
+  document.getElementById('page3'),
+  document.getElementById('page4')
+];
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current = 0;
+function updatePages() {
+  pages.forEach((page, i) => {
+    page.classList.remove('left', 'active', 'right');
+    if (i < current) page.classList.add('left');
+    else if (i === current) page.classList.add('active');
+    else page.classList.add('right');
+  });
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === pages.length - 1;
+}
+prevBtn.addEventListener('click', () => {
+  if (current > 0) {
+    current--;
     updatePages();
+  }
+});
+nextBtn.addEventListener('click', () => {
+  if (current < pages.length - 1) {
+    current++;
+    updatePages();
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') prevBtn.click();
+  if (e.key === 'ArrowRight') nextBtn.click();
+});
+let startX = null;
+document.getElementById('bookFlip').addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+document.getElementById('bookFlip').addEventListener('touchend', e => {
+  if (startX !== null) {
+    let dx = e.changedTouches[0].clientX - startX;
+    if (dx > 40) prevBtn.click();
+    if (dx < -40) nextBtn.click();
+    startX = null;
+  }
+});
+updatePages();
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.querySelector('.about-center-grid');
-      if (grid) Array.from(grid.children).forEach(el => el.classList.add('about-animate-hide'));
-      const nav = document.querySelector('.about-nav');
-      const footer = document.querySelector('.about-footer');
-      if (nav) nav.classList.add('about-animate-hide');
-      if (footer) footer.classList.add('about-animate-hide');
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.about-center-grid');
+  if (grid) {
+    Array.from(grid.children).forEach(el => el.classList.add('about-animate-hide'));
+  }
+  const nav = document.querySelector('.about-nav');
+  const footer = document.querySelector('.about-footer');
+  if (nav) nav.classList.add('about-animate-hide');
+  if (footer) footer.classList.add('about-animate-hide');
+});
+
+// Function to animate the about page elements
+function animateAboutPage() {
+  const grid = document.querySelector('.about-center-grid');
+  if (!grid) return;
+
+  // Add hide class to all grid items, nav, and footer
+  const items = Array.from(grid.children);
+  items.forEach(el => el.classList.add('about-animate-hide'));
+  const nav = document.querySelector('.about-nav');
+  const footer = document.querySelector('.about-footer');
+  if (nav) nav.classList.add('about-animate-hide');
+  if (footer) footer.classList.add('about-animate-hide');
+
+  // Also add hide class to all descendants of nav and footer
+  if (nav) nav.querySelectorAll('*').forEach(el => el.classList.add('about-animate-hide'));
+  if (footer) footer.querySelectorAll('*').forEach(el => el.classList.add('about-animate-hide'));
+
+  // Force reflow
+  void grid.offsetWidth;
+
+  // Start animations immediately (no outer delay)
+  // Animate navigation first
+  if (nav) {
+    nav.classList.remove('about-animate-hide');
+    nav.style.transition = 'opacity 0.6s ease-out, transform 0.8s ease-out';
+    nav.style.opacity = '1';
+    nav.style.transform = 'translateY(0)';
+    // Reveal all nav descendants
+    nav.querySelectorAll('*').forEach(el => {
+      el.classList.remove('about-animate-hide');
+      el.style.opacity = '1';
+      el.style.transform = 'none';
     });
+  }
 
-    function animateAboutPage() {
-      const grid = document.querySelector('.about-center-grid');
-      if (!grid) return;
-      const items = Array.from(grid.children);
-      items.forEach(el => el.classList.add('about-animate-hide'));
-      const nav = document.querySelector('.about-nav');
-      const footer = document.querySelector('.about-footer');
-      if (nav) nav.classList.add('about-animate-hide');
-      if (footer) footer.classList.add('about-animate-hide');
-      if (nav) nav.querySelectorAll('*').forEach(el => el.classList.add('about-animate-hide'));
-      if (footer) footer.querySelectorAll('*').forEach(el => el.classList.add('about-animate-hide'));
-      void grid.offsetWidth;
 
-      if (nav) {
-        nav.classList.remove('about-animate-hide');
-        nav.style.transition = 'opacity 0.6s ease-out, transform 0.8s ease-out';
-        nav.style.opacity = '1';
-        nav.style.transform = 'translateY(0)';
-        nav.querySelectorAll('*').forEach(el => {
-          el.classList.remove('about-animate-hide');
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        });
-      }
+  // Navigation links click handlers
+document.getElementById('aboutLink')?.addEventListener('click', () => {
+  current = 1; // index for Skills page (#page2) since pages[0] is #page1
+  updatePages();
+});
 
-      document.getElementById('aboutLink')?.addEventListener('click', () => { current = 1; updatePages(); });
-      document.getElementById('projectsLink')?.addEventListener('click', () => { current = 2; updatePages(); });
+document.getElementById('projectsLink')?.addEventListener('click', () => {
+  current = 2; // index for Projects page (#page3)
+  updatePages();
+});
 
-      if (footer) {
-        setTimeout(() => {
-          footer.classList.remove('about-animate-hide');
-          footer.style.transition = 'opacity 0.6s ease-out, transform 0.8s ease-out';
-          footer.style.opacity = '1';
-          footer.style.transform = 'translateY(0)';
-          footer.querySelectorAll('*').forEach(el => {
-            el.classList.remove('about-animate-hide');
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-          });
-        }, 60);
-      }
-      items.forEach((el, i) => {
-        setTimeout(() => {
-          el.classList.remove('about-animate-hide');
-          el.style.transition = 'opacity 0.4s cubic-bezier(.77,0,.18,1), transform 0.5s cubic-bezier(.77,0,.18,1)';
-          el.style.opacity = '1';
-          el.style.transform = 'scale(1) translateY(0)';
-          setTimeout(() => {
-            el.style.transform = 'scale(1.05) translateY(0)';
-            setTimeout(() => {
-              el.style.transform = 'scale(1) translateY(0)';
-            }, 80);
-          }, 180);
-        }, i * 40);
+  // Animate footer
+  if (footer) {
+    setTimeout(() => {
+      footer.classList.remove('about-animate-hide');
+      footer.style.transition = 'opacity 0.6s ease-out, transform 0.8s ease-out';
+      footer.style.opacity = '1';
+      footer.style.transform = 'translateY(0)';
+      // Reveal all footer descendants
+      footer.querySelectorAll('*').forEach(el => {
+        el.classList.remove('about-animate-hide');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
       });
-    }
+    }, 60);
+  }
+  // Animate each grid element with minimal stagger
+  items.forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.remove('about-animate-hide');
+      el.style.transition = 'opacity 0.4s cubic-bezier(.77,0,.18,1), transform 0.5s cubic-bezier(.77,0,.18,1)';
+      el.style.opacity = '1';
+      el.style.transform = 'scale(1) translateY(0)';
+      setTimeout(() => {
+        el.style.transform = 'scale(1.05) translateY(0)';
+        setTimeout(() => {
+          el.style.transform = 'scale(1) translateY(0)';
+        }, 80);
+      }, 180);
+    }, i * 40);
+  });
+}
+// Initialize EmailJS
+(function() {
+  emailjs.init("iXLtbZvq8nc8pY_Wr"); // Your Public Key
+})();
 
-    // EmailJS init
-    (function() {
-      emailjs.init("iXLtbZvq8nc8pY_Wr");
-    })();
+// Contact form submit handler
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
 
-    // Contact form
-    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-      e.preventDefault();
-      emailjs.sendForm('service_port001', 'template_ruuhj4f', this)
-        .then(function() {
-          alert('Message sent successfully!');
-          document.getElementById('contactForm').reset();
-        }, function(error) {
-          alert('Failed to send message. Please try again.');
-          console.error('EmailJS Error:', error);
-        });
+  emailjs.sendForm('service_port001', 'template_ruuhj4f', this)
+    .then(function() {
+      alert('Message sent successfully!');
+      document.getElementById('contactForm').reset();
+    }, function(error) {
+      alert('Failed to send message. Please try again.');
+      console.error('EmailJS Error:', error);
     });
+});
+
   </script>
 </body>
 </html>
+
