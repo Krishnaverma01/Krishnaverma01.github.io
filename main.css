@@ -374,3 +374,14 @@ body {
     flex: 1 1 100%;
   }
 }
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-text {
+    font-size: 1.2rem;
+  }
+}
+
+
