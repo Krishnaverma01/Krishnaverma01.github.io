@@ -2,132 +2,375 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Krishna | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="about.css">
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================= GLOBAL STYLES ======================= */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      color: #222;
+      overflow: hidden;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    /* ======================= COVER ANIMATION ======================= */
+    #cover {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #333;
+      color: white;
+      padding: 2rem 4rem;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.6s ease;
+      text-align: center;
+    }
+    #cover.anim-rect {
+      width: 60%;
+      height: 200px;
+    }
+    #cover.anim-rounded {
+      border-radius: 30px;
+    }
+    #cover.anim-expand {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: none;
+    }
+    #cover.anim-fadeout {
+      opacity: 0;
+    }
+
+    /* ======================= MAIN CONTENT ======================= */
+    #mainContent {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    #mainContent.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ======================= WELCOME SECTION ======================= */
+    #welcome {
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    #welcome.visible {
+      opacity: 1;
+    }
+
+    /* ======================= BOOK FLIP ======================= */
+    #bookFlip {
+      display: none;
+      opacity: 0;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .page {
+      width: 200px;
+      height: 300px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .page.left {
+      transform: translateX(-120%) rotateY(-20deg);
+      opacity: 0.5;
+    }
+    .page.active {
+      transform: translateX(0) rotateY(0);
+      opacity: 1;
+    }
+    .page.right {
+      transform: translateX(120%) rotateY(20deg);
+      opacity: 0.5;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    /* ======================= ABOUT PAGE ANIMATION ======================= */
+    .about-center-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1rem;
+    }
+    .about-animate-hide {
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+    }
+    .about-nav, .about-footer {
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="cover-container" id="cover">
-    <div class="cover-content">
-      <div class="cover-title">
-        <span>PORT-</span>
-        <span>FOLIO</span>
-      </div>
-    </div>
-    <div class="cover-footer">
-      <span>Krishna Verma</span>
-      <span>Selected Works</span>
-      <span>2025</span>
-      <span>Frontend</span>
-      <span></span>
-      <span></span>
-    </div>
+
+  <!-- COVER -->
+  <div id="cover">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Click to start</p>
   </div>
-  <div class="main-content" id="mainContent">
-    <div id="welcome">Welcome to my portfolio!</div>
-    <div class="book-flip" id="bookFlip">
-      <div class="book-page left" id="page0"></div>
-      <div class="book-page active" id="page1">
-        <div class="dark-about">
-          <nav class="about-nav">
-            <div class="about-nav-left">
-              <span>WORK (12) </span>
-<span id="aboutLink" class="nav-link">ABOUT</span>
-<span id="projectsLink" class="nav-link">PROJECTS</span>
-  
-            </div>
-         <div class="about-nav-desc">
-          <p>
-          Motivated and ambitious student, passionate about technology, machine learning, and web development.
-          </p>
-          <button class="about-newsletter">NEWSLETTER</button>
-          </div>
 
-          </nav>
-          <main class="about-center">
-            <div class="about-center-grid">
-              <span class="about-role">VISUAL<br>PRODUCT<br>[WEBFLOW]</span>
-              <div class="about-photo">
-                <img src="profile.jpg" alt="profile">
-              </div>
-              <span class="about-role">     DATA <BR>ANALYST</span>
-              <span class="about-role designer"> SOFTWARE DEVELOPER</span>
-              <span class="about-role code">[OPEN FOR WORK]</span>
-            </div>
-          </main>
-          <footer class="about-footer">
-            <div class="about-footer-left">
-              SOCIAL:
-              <a href="https://www.instagram.com/v_krishna007?igsh=MTU0Y2xraW9rbXRpdg==" target="_blank" rel="noopener" class="about-social-link">Instagram</a>,
-              <a href="https://www.linkedin.com/in/krishna-verma-69b57228a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" class="about-social-link">LinkedIn</a>
-            </div>
-            <div class="about-footer-center">BE CREATIVE</div>
-            <div class="about-footer-center">BE DIFFERENT</div>
-            <div class="about-footer-right">©2025 </div>
-          </footer>
-        </div>
-      </div>
-      <div class="book-page right" id="page2">
-        <div class="title">Skills</div>
-        <div class="content">
-          HTML5, CSS3, JavaScript,GitHub, Python, PowerBI, Microsoft Excel, Sql, DBMS, DSA, Canva, Adobe XD ,SDLC
-        </div>
-      </div>
-      <div class="book-page right" id="page3">
-        <div class="title">Projects</div>
-        <div class="content">
-          Portfolio Website, spam mail detection using machine learning 
-        </div>
-      </div>
-      <div class="book-page right" id="page4">
-        <section id="contact" class="contact-section">
-  <div class="contact-container">
-    
-    <!-- Left Box: Contact Details -->
-    <div class="contact-card contact-details">
-      <h2>Contact Details</h2>
-      <p>📍 <strong>Location:</strong> Mathura, Uttar Pradesh, India</p>
-      <p>📧 <strong>Email:</strong> <a href="mailto:krishnaverma.ac.in@gmail.com">krishnaverma.ac.in@gmail.com</a></p>
-      <p>📞 <strong>Phone:</strong> <a href="tel:+917017655342">+91 70176 55342</a></p>
-      <p>💼 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/samarth-verma" target="_blank">linkedin.com/in/samarth-verma</a></p>
-      <p>🐙 <strong>GitHub:</strong> <a href="https://github.com/samarthverma" target="_blank">github.com/samarthverma</a></p>
+  <!-- MAIN CONTENT -->
+  <div id="mainContent">
+    <div id="welcome" class="visible">
+      <h2>Hello, I'm Krishna</h2>
     </div>
 
-    <!-- Right Box: Contact Me Form -->
-    <div class="contact-card contact-form">
-      <h2>Contact Me</h2>
-      <p>Send me a message — I usually reply within 24–48 hours.</p>
-     <form id="contactForm">
-  <input type="text" name="user_name" placeholder="Your Name" required>
-  <input type="email" name="user_email" placeholder="Your Email" required>
-  <input type="tel" name="phone" placeholder="Your Phone Number">
-  <input type="text" name="subject" placeholder="Subject">
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit">Send</button>
-</form>
-
+    <!-- Book Flip -->
+    <div id="bookFlip">
+      <button id="prevBtn">Previous</button>
+      <div class="page" id="page1">About</div>
+      <div class="page" id="page2">Skills</div>
+      <div class="page" id="page3">Projects</div>
+      <div class="page" id="page4">Contact</div>
+      <button id="nextBtn">Next</button>
     </div>
 
+    <!-- About Page Example -->
+    <nav class="about-nav">
+      <button id="aboutLink">About</button>
+      <button id="projectsLink">Projects</button>
+    </nav>
+    <div class="about-center-grid">
+      <div>Card 1</div>
+      <div>Card 2</div>
+      <div>Card 3</div>
+    </div>
+    <footer class="about-footer">
+      <p>© 2025 My Portfolio</p>
+    </footer>
+
+    <!-- Contact Form -->
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
   </div>
-</section>
 
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  
-          
-</div>
+  <!-- MAIN SCRIPT -->
+  <script>
+    // Cover click transition
+    const cover = document.getElementById('cover');
+    const mainContent = document.getElementById('mainContent');
 
-      
-      <div class="book-controls">
-        <button class="book-btn" id="prevBtn" aria-label="Previous page">&#8592;</button>
-        <button class="book-btn" id="nextBtn" aria-label="Next page">&#8594;</button>
-      </div>
-    </div>
-  </div>
-  <script src="main.js"></script>
-  <script src="about.js"></script>
+    if (cover) {
+      cover.addEventListener('click', function handleCoverClick(e) {
+        if (cover.classList.contains('anim-rect') || cover.classList.contains('anim-expand')) return;
+        cover.classList.add('anim-overflow');
+        cover.classList.add('anim-rect');
+        setTimeout(() => {
+          cover.classList.add('anim-rounded');
+          setTimeout(() => {
+            cover.classList.add('anim-expand');
+            setTimeout(() => {
+              cover.classList.add('anim-fadeout');
+              const welcome = document.getElementById('welcome');
+              if (welcome) welcome.classList.add('visible');
+              setTimeout(() => {
+                cover.style.display = 'none';
+                mainContent.classList.add('visible');
+                setTimeout(showBookFlip, 800);
+              }, 600);
+            }, 800);
+          }, 500);
+        }, 600);
+      });
+    }
+
+    let aboutPageAnimated = false;
+
+    function showBookFlip() {
+      const welcome = document.getElementById('welcome');
+      const book = document.getElementById('bookFlip');
+      welcome.style.transition = "opacity 0.7s";
+      welcome.style.opacity = 0;
+      setTimeout(() => {
+        book.style.display = "flex";
+        book.style.opacity = "0";
+        book.style.transition = "opacity 0.8s cubic-bezier(.77,0,.18,1)";
+        setTimeout(() => {
+          book.style.opacity = "1";
+          setTimeout(() => {
+            if (pages[0].classList.contains('active') && !aboutPageAnimated) {
+              animateAboutPage();
+              aboutPageAnimated = true;
+            }
+            setTimeout(() => {
+              welcome.style.display = "none";
+            }, 200);
+          }, 800);
+        }, 100);
+      }, 400);
+    }
+
+    const pages = [
+      document.getElementById('page1'),
+      document.getElementById('page2'),
+      document.getElementById('page3'),
+      document.getElementById('page4')
+    ];
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    function updatePages() {
+      pages.forEach((page, i) => {
+        page.classList.remove('left', 'active', 'right');
+        if (i < current) page.classList.add('left');
+        else if (i === current) page.classList.add('active');
+        else page.classList.add('right');
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === pages.length - 1;
+    }
+    prevBtn.addEventListener('click', () => { if (current > 0) { current--; updatePages(); } });
+    nextBtn.addEventListener('click', () => { if (current < pages.length - 1) { current++; updatePages(); } });
+    document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') prevBtn.click(); if (e.key === 'ArrowRight') nextBtn.click(); });
+
+    let startX = null;
+    document.getElementById('bookFlip').addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    document.getElementById('bookFlip').addEventListener('touchend', e => {
+      if (startX !== null) {
+        let dx = e.changedTouches[0].clientX - startX;
+        if (dx > 40) prevBtn.click();
+        if (dx < -40) nextBtn.click();
+        startX = null;
+      }
+    });
+
+    updatePages();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.querySelector('.about-center-grid');
+      if (grid) Array.from(grid.children).forEach(el => el.classList.add('about-animate-hide'));
+      const nav = document.querySelector('.about-nav');
+      const footer = document.querySelector('.about-footer');
+      if (nav) nav.classList.add('about-animate-hide');
+      if (footer) footer.classList.add('about-animate-hide');
+    });
+
+    function animateAboutPage() {
+      const grid = document.querySelector('.about-center-grid');
+      if (!grid) return;
+      const items = Array.from(grid.children);
+      items.forEach(el => el.classList.add('about-animate-hide'));
+      const nav = document.querySelector('.about-nav');
+      const footer = document.querySelector('.about-footer');
+      if (nav) nav.classList.add('about-animate-hide');
+      if (footer) footer.classList.add('about-animate-hide');
+      if (nav) nav.querySelectorAll('*').forEach(el => el.classList.add('about-animate-hide'));
+      if (footer) footer.querySelectorAll('*').forEach(el => el.classList.add('about-animate-hide'));
+      void grid.offsetWidth;
+
+      if (nav) {
+        nav.classList.remove('about-animate-hide');
+        nav.style.transition = 'opacity 0.6s ease-out, transform 0.8s ease-out';
+        nav.style.opacity = '1';
+        nav.style.transform = 'translateY(0)';
+        nav.querySelectorAll('*').forEach(el => {
+          el.classList.remove('about-animate-hide');
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+
+      document.getElementById('aboutLink')?.addEventListener('click', () => { current = 1; updatePages(); });
+      document.getElementById('projectsLink')?.addEventListener('click', () => { current = 2; updatePages(); });
+
+      if (footer) {
+        setTimeout(() => {
+          footer.classList.remove('about-animate-hide');
+          footer.style.transition = 'opacity 0.6s ease-out, transform 0.8s ease-out';
+          footer.style.opacity = '1';
+          footer.style.transform = 'translateY(0)';
+          footer.querySelectorAll('*').forEach(el => {
+            el.classList.remove('about-animate-hide');
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          });
+        }, 60);
+      }
+      items.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.remove('about-animate-hide');
+          el.style.transition = 'opacity 0.4s cubic-bezier(.77,0,.18,1), transform 0.5s cubic-bezier(.77,0,.18,1)';
+          el.style.opacity = '1';
+          el.style.transform = 'scale(1) translateY(0)';
+          setTimeout(() => {
+            el.style.transform = 'scale(1.05) translateY(0)';
+            setTimeout(() => {
+              el.style.transform = 'scale(1) translateY(0)';
+            }, 80);
+          }, 180);
+        }, i * 40);
+      });
+    }
+
+    // EmailJS init
+    (function() {
+      emailjs.init("iXLtbZvq8nc8pY_Wr");
+    })();
+
+    // Contact form
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('service_port001', 'template_ruuhj4f', this)
+        .then(function() {
+          alert('Message sent successfully!');
+          document.getElementById('contactForm').reset();
+        }, function(error) {
+          alert('Failed to send message. Please try again.');
+          console.error('EmailJS Error:', error);
+        });
+    });
+  </script>
 </body>
 </html>
