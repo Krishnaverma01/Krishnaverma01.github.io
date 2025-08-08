@@ -126,9 +126,9 @@ body, .dark-about {
 }
 .about-center-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(80px, 1fr));
-  grid-template-rows: 40px minmax(80px, 140px) 40px;
-  gap: 8px;
+  grid-template-columns: 140px 140px 140px;
+  grid-template-rows: 40px 140px 40px;
+  gap: 0 0;
   align-items: center;
   justify-items: center;
   min-width: unset;
@@ -189,16 +189,10 @@ body, .dark-about {
   word-break: break-word;
   white-space: normal;
 }
-@media (max-width: 600px) {
-  .about-nav-right {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    gap: 6px;
-  }
+.about-footer-right {
+  text-align: right;
 }
-
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .about-nav, .about-footer {
     padding-left: 8px;
     padding-right: 8px;
@@ -212,10 +206,9 @@ body, .dark-about {
     max-width: 100%;
   }
   .about-newsletter {
-=width: 100%;
-    padding: 10px 0;
-    font-size: 12px;
-    
+    font-size: 11px;
+    padding: 5px 10px;
+    margin-left: 4px;
   }
 }
 @media (max-width: 600px) {
@@ -272,3 +265,6 @@ body, .dark-about {
   background: transparent;
 }
 
+
+
+1. Consolidate Dark Theme Colors
