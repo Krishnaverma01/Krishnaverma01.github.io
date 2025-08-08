@@ -15,7 +15,7 @@ body {
   background: #f8f8f8;
   font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   color: #222;
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,5 +383,6 @@ body {
     font-size: 1.2rem;
   }
 }
+
 
 
