@@ -297,4 +297,112 @@ body {
 
 .contact-card {
   flex: 1 1 14%;
- 
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-card h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.contact-card p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.contact-card a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}
+
+/* Form Styles */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0073e6;
+}
+
+.contact-form button {
+  padding: 12px;
+  background: #0073e6;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #005bb5;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 900px) {
+  .book-page { font-size: 1.1rem; }
+  .book-btn { width: 44px; height: 44px; font-size: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 20px;
+  }
+
+  .contact-card {
+    flex: 1 1 100%;
+  }
+
+  .cover-title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cover-container {
+    width: 95vw;
+    height: 90vh;
+    border-radius: 20px;
+  }
+
+  .cover-title {
+    font-size: 2.2rem;
+  }
+
+  .book-page .title {
+    font-size: 2.4rem;
+  }
+
+  .book-page .content {
+    font-size: 1rem;
+    padding: 0 16px;
+  }
+
+  .book-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+}
