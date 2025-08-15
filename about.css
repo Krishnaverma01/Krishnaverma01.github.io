@@ -6,36 +6,46 @@
   --card: #fff;
   --cardText: #232323;
 }
+
 body, .dark-about {
   background: var(--bg) !important;
   color: var(--text) !important;
 }
-.about-nav, .about-footer, .about-nav-left span, .about-nav-right, .about-footer-center, .about-footer-left, .about-footer-right, .about-role, .about-nav-desc, .about-center-grid, .about-newsletter, .about-newsletter:hover, .about-social-link, .about-social-link:hover {
+
+.about-nav, .about-footer, .about-nav-left span, .about-nav-right, .about-footer-center, 
+.about-footer-left, .about-footer-right, .about-role, .about-nav-desc, .about-center-grid, 
+.about-newsletter, .about-newsletter:hover, .about-social-link, .about-social-link:hover {
   color: var(--text) !important;
   transition: color 0.3s;
 }
+
 .about-newsletter, .about-social-link {
   color: var(--accent) !important;
 }
+
 .about-newsletter:hover, .about-social-link:hover {
   color: var(--accent2) !important;
 }
+
 .about-photo {
   background: var(--card);
 }
+
 .about-photo img {
   background: var(--card);
 }
+
 .book-page {
   background: linear-gradient(90deg, var(--card) 80%, #f5f5f5 100%);
   color: var(--cardText);
   transition: background 0.3s, color 0.3s;
 }
+
 .dark-about {
   height: 100vh;
   width: 100vw;
-  background: #101010;
-  color: #f5f5f5;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -43,10 +53,8 @@ body, .dark-about {
   align-items: stretch;
   position: relative;
   z-index: 1;
-  overflow: hidden; /* Remove all scrolling */
+  overflow: hidden;
 }
-
-/* Custom scrollbar styles removed - no scrolling needed */
 
 .about-nav {
   width: 100%;
@@ -60,14 +68,17 @@ body, .dark-about {
   opacity: 0.85;
   box-sizing: border-box;
 }
+
 .about-nav-left span {
   margin-right: 32px;
   cursor: pointer;
   transition: color 0.2s;
 }
+
 .about-nav-left span:hover {
   color: #fff;
 }
+
 .about-nav-right {
   display: flex;
   align-items: flex-end;
@@ -79,6 +90,7 @@ body, .dark-about {
   max-width: 45%;
   flex-direction: column;
 }
+
 .about-footer-right {
   min-width: 120px;
   flex-shrink: 0;
@@ -86,6 +98,7 @@ body, .dark-about {
   align-items: center;
   justify-content: flex-end;
 }
+
 .about-nav-desc {
   max-width: 100%;
   font-size: 12px;
@@ -95,6 +108,7 @@ body, .dark-about {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
 .about-newsletter {
   background: none;
   border: 1px solid #444;
@@ -112,10 +126,12 @@ body, .dark-about {
   text-align: center;
   align-self: flex-end;
 }
+
 .about-newsletter:hover {
   border: 1px solid #fff;
   color: #fff;
 }
+
 .about-center {
   flex: 1;
   display: flex;
@@ -124,6 +140,7 @@ body, .dark-about {
   min-height: 0;
   padding: 20px;
 }
+
 .about-center-grid {
   display: grid;
   grid-template-columns: 140px 140px 140px;
@@ -131,9 +148,9 @@ body, .dark-about {
   gap: 0 0;
   align-items: center;
   justify-items: center;
-  min-width: unset;
   margin: 0 auto;
 }
+
 .about-role {
   font-size: 13px;
   color: #bdbdbd;
@@ -142,14 +159,17 @@ body, .dark-about {
   line-height: 1.5;
   font-weight: 400;
 }
+
 .about-role.designer {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
 }
+
 .about-role.code {
   grid-column: 3 / 4;
   grid-row: 3 / 4;
 }
+
 .about-photo {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
@@ -163,6 +183,7 @@ body, .dark-about {
   align-items: center;
   justify-content: center;
 }
+
 .about-photo img {
   width: 100%;
   height: 100%;
@@ -170,6 +191,7 @@ body, .dark-about {
   display: block;
   filter: grayscale(100%) contrast(1.1);
 }
+
 .about-footer {
   width: 100%;
   display: flex;
@@ -183,46 +205,57 @@ body, .dark-about {
   letter-spacing: 1px;
   box-sizing: border-box;
 }
+
 .about-footer-left, .about-footer-right {
   min-width: 100px;
   flex-shrink: 1;
   word-break: break-word;
   white-space: normal;
 }
+
 .about-footer-right {
   text-align: right;
 }
+
+/* Media Queries */
+
 @media (max-width: 900px) {
   .about-nav, .about-footer {
     padding-left: 8px;
     padding-right: 8px;
   }
+
   .about-center-grid {
     gap: 16px 24px;
   }
+
   .about-nav-right {
     gap: 8px;
     flex-wrap: wrap;
     max-width: 100%;
   }
+
   .about-newsletter {
     font-size: 11px;
     padding: 5px 10px;
     margin-left: 4px;
   }
 }
+
 @media (max-width: 600px) {
   .about-nav, .about-footer {
     padding-left: 2px;
     padding-right: 2px;
     font-size: 10px;
   }
+
   .about-nav-right {
     flex-direction: column;
-    align-items: flex-start; /* Move children to the left */
+    align-items: flex-start;
     gap: 4px;
     max-width: 100%;
   }
+
   .about-newsletter {
     width: 100%;
     max-width: 100%;
@@ -231,40 +264,87 @@ body, .dark-about {
     margin-left: 0;
     margin-top: 6px;
     align-self: stretch;
-    text-align: left; /* Button text to the left */
+    text-align: left;
   }
+
   .about-nav-desc {
     max-width: 100%;
-    word-break: break-word;
-    text-align: left; /* Description to the left */
+    text-align: left;
+  }
+
+  .about-center-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 20px;
+  }
+
+  .about-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .about-role {
+    font-size: 11px;
   }
 }
-/* Animation utility for JS-driven about page animation */
+
+@media (max-width: 480px) {
+  .about-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+
+  .about-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 9px;
+  }
+
+  .about-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .about-newsletter {
+    font-size: 9px;
+  }
+
+  .about-center {
+    padding: 10px;
+  }
+
+  .about-role {
+    font-size: 10px;
+  }
+}
+
+/* Utilities */
 .about-animate-hide {
   opacity: 0 !important;
   transform: scale(0.8) translateY(60px) !important;
   transition: none !important;
 }
+
 .about-social-link {
-  color: #ffb347;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
+
 .about-social-link:hover {
-  color: #ff5e62;
+  color: var(--accent2);
   text-decoration: underline;
 }
+
 .swarm-canvas {
   position: fixed;
-  left: 0; top: 0;
+  left: 0;
+  top: 0;
   width: 100vw;
   height: 100vh;
   z-index: 99999;
   pointer-events: none;
   background: transparent;
 }
-
-
-
-1. Consolidate Dark Theme Colors
