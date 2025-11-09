@@ -1,0 +1,114 @@
+/* --- 1. Base Setup & Variables --- */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --accent-color: #00bcd4; /* Cyan */
+    --background-dark: #1f2833;
+    --text-light: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--background-dark);
+    display: flex; /* Centers the content wrapper */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- 2. Liquid Background Setup & Animation --- */
+.liquid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(80px); /* Soften the edges */
+}
+
+.blob-1 {
+    width: 80vw; height: 80vw;
+    background-color: var(--primary-color);
+    top: -20vh; left: -20vw;
+    animation: moveBlob1 25s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+    width: 60vw; height: 60vw;
+    background-color: var(--accent-color);
+    bottom: -15vh; right: -15vw;
+    animation: moveBlob2 30s infinite alternate ease-in-out;
+}
+
+@keyframes moveBlob1 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(40vw, 30vh) scale(1.1); }
+}
+
+@keyframes moveBlob2 {
+    from { transform: translate(0, 0) scale(1.2); }
+    to { transform: translate(-30vw, -20vh) scale(0.9); }
+}
+
+/* --- 3. Transparent Content Wrapper (Frosted Glass Effect) --- */
+.content-wrapper {
+    width: 100%; /* Full width on mobile */
+    max-width: 500px; /* Constrains size on desktop */
+    padding: 30px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    
+    /* The key transparency features */
+    **backdrop-filter: blur(10px);** border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-align: center;
+}
+
+/* --- 4. Converter Specific Styles (Ensuring UI looks good) --- */
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: var(--text-light);
+}
+
+/* Style the button */
+button { 
+    padding: 12px 25px; 
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--accent-color);
+}
